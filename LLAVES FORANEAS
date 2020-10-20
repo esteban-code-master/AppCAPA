@@ -1,0 +1,137 @@
+ALTER TABLE convenios ADD
+FOREIGN KEY (id_cliente) REFERENCES clientes(id);
+
+ALTER TABLE contratos ADD
+FOREIGN KEY (id_cliente) REFERENCES clientes(id);
+
+ALTER TABLE contratos ADD
+FOREIGN KEY (id_giro) REFERENCES giros(id);
+
+ALTER TABLE contratos ADD
+FOREIGN KEY (id_estatus) REFERENCES estatus_contrato(id);
+
+ALTER TABLE clientes ADD
+FOREIGN KEY (id_direccion) REFERENCES direcciones(id);
+
+ALTER TABLE domicializaciones ADD
+FOREIGN KEY (id_contrato) REFERENCES contratos(id);
+
+ALTER TABLE domicializaciones ADD
+FOREIGN KEY (id_entidades) REFERENCES entidades(id);
+
+# ----- direcciones -----
+
+ALTER TABLE direcciones ADD
+FOREIGN KEY (id_cliente) REFERENCES clientes(id);
+
+ALTER TABLE direcciones ADD 
+FOREIGN KEY (id_estado) REFERENCES estados(id);
+
+ALTER TABLE direcciones ADD 
+FOREIGN KEY (id_sector) REFERENCES sectores(id);
+
+# --- pagos ----
+
+
+ALTER TABLE pagos ADD 
+FOREIGN KEY (id_cliente)REFERENCES clientes(id);
+
+
+ALTER TABLE pagos ADD 
+FOREIGN KEY (id_concepto) REFERENCES conceptos(id);
+
+
+# ----- lecturas -----
+
+ALTER TABLE lecturas ADD
+FOREIGN KEY (id_cliente) REFERENCES clientes(id);
+
+#--- encuestas
+
+ALTER TABLE encuestas ADD
+FOREIGN KEY (id_sector) REFERENCES sectores(id);
+
+ALTER TABLE encuestas ADD
+FOREIGN KEY (id_categoria) REFERENCES categorias(id);
+
+ALTER TABLE detalle_encuestas ADD
+FOREIGN KEY (id_pregunta) REFERENCES preguntas(id);
+
+#-----estatus_pagos----
+
+ALTER TABLE estatus_pagos ADD
+FOREIGN KEY (id_pago) REFERENCES pagos(id);
+
+#------rutas-------
+ALTER TABLE rutas ADD
+FOREIGN KEY (id_sector) REFERENCES sectores(id);
+
+#----- inspectores-------
+
+
+ALTER TABLE inspectores ADD
+FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id);
+
+ALTER TABLE inspectores ADD
+FOREIGN KEY (id_sector) REFERENCES sectores(id);
+
+#------ trabajadores
+
+ALTER TABLE trabajadores ADD 
+FOREIGN KEY (id_cargo) REFERENCES cargos(id);
+
+ALTER TABLE trabajadores ADD
+FOREIGN KEY (id_departamento) REFERENCES departamentos(id);
+
+# ---- reportes -----
+
+
+ALTER TABLE reportes ADD
+FOREIGN KEY (id_anomalia) REFERENCES anomalias(id);
+
+
+ALTER TABLE reportes ADD
+FOREIGN KEY (id_direccion )REFERENCES direcciones(id);
+
+
+# ------detalles de reportes  -------
+
+
+ALTER TABLE detalle_rep_trabajador ADD
+FOREIGN KEY (id_reporte) REFERENCES reportes(id);
+
+ALTER TABLE detalle_rep_trabajador ADD
+FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id);
+
+
+ALTER TABLE detalle_rep_cliente ADD
+FOREIGN KEY (id_reporte) REFERENCES reportes(id);
+
+ALTER TABLE detalle_rep_cliente ADD
+FOREIGN KEY (id_cliente) REFERENCES clientes(id);
+
+
+#----- evidencias -------
+
+
+ALTER TABLE evidencias ADD
+FOREIGN KEY (id_reporte) REFERENCES reportes(id);
+
+# ---- chats  ---------
+
+
+ALTER TABLE chats ADD
+FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id);
+
+ALTER TABLE detalle_rep_cliente ADD
+FOREIGN KEY (id_cliente) REFERENCES clientes(id);
+
+
+
+
+
+
+
+
+
+
