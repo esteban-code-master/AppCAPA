@@ -1,0 +1,255 @@
+# BASE DE DATOS
+#SCRIP
+#fecha automatica DEFAULT CURRENT_TIMESTAMP
+
+DROP DATABASE sistema_capa;
+
+CREATE DATABASE sistema_capa;
+
+USE sistema_capa;
+
+CREATE TABLE convenios
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+folio VARCHAR(50),
+id_cliente INT NOT NULL,
+f_inicial DATE,
+f_final DATE
+);
+
+CREATE TABLE
+giros
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(20)
+);
+
+CREATE TABLE contratos
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_cliente INT NOT NULL,
+folio VARCHAR(50),
+fecha DATE,
+id_giro INT NOT NULL,
+medidor VARCHAR(50),
+id_estatus INT NOT NULL
+);
+
+CREATE TABLE clientes
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+clave INT NOT NULL,
+nombre VARCHAR(20),
+ape_paterno VARCHAR(15),
+ape_materno VARCHAR(15),
+telefono VARCHAR(10),
+correo VARCHAR(30),
+id_direccion INT NOT NULL
+);
+
+CREATE TABLE domicializaciones
+(
+id_contrato INT NOT NULL,
+numero VARCHAR(30),
+id_entidades INT NOT NULL,
+pago DOUBLE
+);
+
+CREATE TABLE estatus_contrato
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(15)
+);
+
+CREATE TABLE direcciones
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_cliente INT NOT NULL,
+colonia VARCHAR(20),
+calle VARCHAR(20),
+id_municipio INT NOT NULL,
+id_estado INT NOT NULL,
+lote INT NOT NULL,
+cp INT,
+id_sector INT NOT NULL
+);
+
+CREATE TABLE entidades
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(20)
+);
+
+CREATE TABLE pagos
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_cliente INT NOT NULL,
+folio INT NOT NULL,
+id_concepto INT NOT NULL,
+f_inicial TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fecha_vencimiento DATE
+);
+
+CREATE TABLE lecturas
+(
+id_cliente INT NOT NULL,
+lectura_ant INT,
+lectura_act INT,
+consumo INT,
+fecha DATE
+);
+
+CREATE TABLE encuestas
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+comentario VARCHAR(100),
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+id_sector INT NOT NULL,
+id_categoria INT NOT NULL,
+calificacion INT
+);
+
+CREATE TABLE detalle_encuestas
+(
+id_encuesta INT NOT NULL PRIMARY KEY,
+respuestas VARCHAR(50),
+id_pregunta INT NOT NULL
+);
+
+CREATE TABLE preguntas
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR (30)
+);
+
+
+CREATE TABLE conceptos
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(20)
+);
+
+
+CREATE TABLE estatus_pagos
+(
+id_pago INT NOT NULL,
+estatus BOOLEAN
+);
+
+CREATE TABLE categorias
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(15)
+);
+
+
+CREATE TABLE municipios
+(
+id INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(20)
+);
+
+
+CREATE TABLE sectores
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+sector VARCHAR(10)
+);
+
+CREATE TABLE rutas
+(
+id_sector INT NOT NULL,
+ruta VARCHAR(20)
+);
+
+CREATE TABLE estados
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(20)
+);
+
+
+CREATE TABLE inspectores
+(
+id_trabajador INT NOT NULL,
+id_sector INT NOT NULL,
+lotes INT
+);
+
+CREATE TABLE trabajadores
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+clave INT NOT NULL,
+nombre VARCHAR(20),
+ape_paterno VARCHAR(20),
+ape_materno VARCHAR(20),
+telefono VARCHAR(10),
+id_cargo INT NOT NULL,
+id_departamento INT NOT NULL,
+contraseña VARCHAR(20)
+);
+
+
+CREATE TABLE cargos
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+cargo VARCHAR(20)
+);
+
+
+CREATE TABLE departamentos
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+departamentos VARCHAR(20)
+);
+
+
+CREATE TABLE reportes
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+folio INT NOT NULL,
+contrato INT,
+id_anomalia INT NOT NULL,
+descripcion VARCHAR(50),
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+id_direccion INT NOT NULL,
+estatus BOOLEAN
+);
+
+
+CREATE TABLE detalle_rep_trabajador
+(
+id_reporte INT NOT NULL,
+id_trabajador INT NOT NULL
+);
+
+
+CREATE TABLE detalle_rep_cliente
+(
+id_reporte INT NOT NULL,
+id_cliente INT NOT NULL
+);
+
+
+
+CREATE TABLE evidencias
+(
+id_reporte INT NOT NULL,
+fotografia VARCHAR(20)
+);
+
+CREATE TABLE anomalias
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(30)
+);
+
+
+CREATE TABLE chats
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+texto VARCHAR(100),
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+id_trabajador INT NOT NULL,
+id_cliente INT NOT NULL
+);
