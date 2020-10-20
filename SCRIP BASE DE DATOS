@@ -43,8 +43,7 @@ nombre VARCHAR(20),
 ape_paterno VARCHAR(15),
 ape_materno VARCHAR(15),
 telefono VARCHAR(10),
-correo VARCHAR(30),
-id_direccion INT NOT NULL
+correo VARCHAR(30)
 );
 
 CREATE TABLE domicializaciones
