@@ -10,9 +10,6 @@ FOREIGN KEY (id_giro) REFERENCES giros(id);
 ALTER TABLE contratos ADD
 FOREIGN KEY (id_estatus) REFERENCES estatus_contrato(id);
 
-ALTER TABLE clientes ADD
-FOREIGN KEY (id_direccion) REFERENCES direcciones(id);
-
 ALTER TABLE domicializaciones ADD
 FOREIGN KEY (id_contrato) REFERENCES contratos(id);
 
